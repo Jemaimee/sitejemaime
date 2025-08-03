@@ -1,28 +1,96 @@
-html, body {
-    height: 100%;
-    font-family: Arial, sans-serif;
-    background-color: #0d1117;
-    color: #ffffff;
-    margin: 0;
-}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Je m'aime - Commentaires</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
+  <div id="mainTitle">
+    <h1>JE M'AIME</h1>
+    <a href="https://discord.com/users/451422563625861130" target="_blank" rel="noopener noreferrer">DISCORD</a>
+  </div>
 
-.maintitle h1 {
-    margin: 0;
-}
+  <div id="inputSection">
+    <input type="text" id="username" placeholder="Ton pseudo" required /><br /><br />
+    <textarea id="commentContent" placeholder="Ton commentaire" required></textarea><br />
+    <button id="submitComment">Envoyer</button>
+  </div>
 
-.discordlink a {
-    text-decoration: none;
-    color: white;
-    background-color: #5865F2;
-    padding: 10px 20px;
-    border-radius: 5px;
-    display: inline-block;
-}
+  <div id="commentWrapper">
+    <div id="commentSection"></div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
+
+    // Ta config Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyBFrfps5xA3LscO7ltRy1Wo6KZF-egTP3E",
+      authDomain: "je-maime-46330.firebaseapp.com",
+      projectId: "je-maime-46330",
+      storageBucket: "je-maime-46330.firebasestorage.app",
+      messagingSenderId: "614930169981",
+      appId: "1:614930169981:web:0baa48a81edfc78b603114",
+      measurementId: "G-9ZDE0Z57XJ"
+    };
+
+    // Initialize Firebase & Firestore
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getFirestore(app);
+
+    const commentSection = document.getElementById('commentSection');
+    const submitBtn = document.getElementById('submitComment');
+
+    // Fonction pour afficher un commentaire
+    function renderComment(doc) {
+      const data = doc.data();
+      const div = document.createElement('div');
+      div.className = 'comment';
+      div.innerHTML = `
+        <div class="author">${escapeHTML(data.username)}</div>
+        <div class="date">${data.timestamp ? new Date(data.timestamp.seconds * 1000).toLocaleString() : ''}</div>
+        <div class="content">${escapeHTML(data.content)}</div>`;
+      commentSection.prepend(div);
+    }
+
+    // Ecoute temps réel sur la collection 'comments', triée par timestamp décroissant
+    const q = query(collection(db, "comments"), orderBy("timestamp", "desc"));
+    onSnapshot(q, (snapshot) => {
+      commentSection.innerHTML = '';
+      snapshot.forEach(doc => renderComment(doc));
+    });
+
+    // Escape HTML pour éviter les injections
+    function escapeHTML(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // Envoi du commentaire
+    submitBtn.addEventListener('click', async () => {
+      const username = document.getElementById('username').value.trim();
+      const content = document.getElementById('commentContent').value.trim();
+      if (!username || !content) return alert("Merci de remplir tous les champs.");
+
+      try {
+        await addDoc(collection(db, "comments"), {
+          username,
+          content,
+          timestamp: serverTimestamp()
+        });
+        document.getElementById('username').value = '';
+        document.getElementById('commentContent').value = '';
+      } catch (error) {
+        console.error("Erreur lors de l'envoi du commentaire :", error);
+      }
+    });
+  </script>
+</body>
+</html>
