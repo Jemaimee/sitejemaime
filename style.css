@@ -1,6 +1,9 @@
-body {
+html, body {
+    height: 100%;
     margin: 0;
-    height: 100vh; /* Full height of viewport */
+}
+
+body {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -8,6 +11,15 @@ body {
     text-align: center;
 }
 
-.maintitle, .discordlink {
-    margin: 10px;
+.maintitle h1 {
+    margin: 0;
+}
+
+.discordlink a {
+    text-decoration: none;
+    color: white;
+    background-color: #5865F2;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block;
 }
