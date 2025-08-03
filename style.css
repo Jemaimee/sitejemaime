@@ -11,14 +11,20 @@ html, body {
     color: #ffffff;
 }
 
-.container {
+.title {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
     text-align: center;
 }
-
+.link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    text-align: center;
+}
 h1 {
     font-size: 3rem;
     font-weight: bold;
