@@ -11,14 +11,14 @@ html, body {
     color: #ffffff;
 }
 
-.title {
+.maintitle {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
     text-align: center;
 }
-.link {
+.discordlink {
     display: flex;
     justify-content: center;
     align-items: center;
