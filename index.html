@@ -9,9 +9,16 @@
 <body>
 
   <div id="mainTitle">
-    <h1>JE M'AIME</h1>
-    <a href="https://discord.com/users/451422563625861130" target="_blank" rel="noopener noreferrer">DISCORD</a>
+  <h1>JE M'AIME</h1>
+  <div class="linkContainer">
+    <a href="https://discord.com/users/451422563625861130" target="_blank">DISCORD</a>
+    <a href="https://steamcommunity.com/id/je_maime/" target="_blank">STEAM PROFILE</a>
+    <button class="hoverButton"><span>STEAM FRIEND CODE</span></button>
+
+
   </div>
+</div>
+
 
   <div id="inputSection">
     <input type="text" id="username" placeholder="pseudo" required /><br /><br />
@@ -92,5 +99,22 @@
       }
     });
   </script>
+  <script>
+  const button = document.querySelector('.hoverButton');
+
+  button.addEventListener('click', () => {
+    const textToCopy = "1571990998";
+    navigator.clipboard.writeText(textToCopy).then(() => {
+      button.classList.add('copied');
+      setTimeout(() => {
+        button.classList.remove('copied');
+      }, 2000); 
+    }).catch(err => {
+      console.error('Erreur lors de la copie :', err);
+    });
+  });
+</script>
+
+
 </body>
 </html>
