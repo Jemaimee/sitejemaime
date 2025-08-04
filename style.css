@@ -19,15 +19,93 @@ body {
   margin-bottom: 20px;
 }
 
-#mainTitle a {
-  text-decoration: none;
-  padding: 10px 20px;
-  background-color: #7289da;
-  color: #0d1117;
-  border-radius: 5px;
-  font-size: 1.2em;
+.linkContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px; 
 }
 
+.linkContainer a {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  width: auto;
+  color: black;
+}
+
+
+
+
+.linkContainer a[href*="discord"] {
+  background-color: #7289da;
+}
+.linkContainer a[href*="discord"]:hover {
+  opacity: 0.85;
+  transform: scale(1.10);
+  transition: all 0.3s ease;
+}
+.linkContainer a[href*="steamcommunity"] {
+  background: linear-gradient(135deg, #1b2736 0%, #243357 50%, #193472 100%);
+  color: white;
+}
+.linkContainer a[href*="steamcommunity"]:hover {
+  opacity: 0.85;
+  transform: scale(1.10);
+  transition: all 0.3s ease;
+}
+.hoverButton {
+  display: inline-block;
+  margin: 5px 0;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #1b2736 0%, #243357 50%, #193472 100%);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.hoverButton span {
+  transition: opacity 0.3s ease;
+}
+
+.hoverButton::after {
+  content: "1571990998";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  pointer-events: none;
+  color: white;
+}
+
+.hoverButton:hover span {
+  opacity: 0;
+}
+
+.hoverButton:hover::after {
+  opacity: 1;
+}
+.hoverButton:hover {
+  opacity: 0.85;
+  transform: scale(1.10);
+  transition: all 0.3s ease;
+}
+.hoverButton.copied::after {
+  content: "COPIED";
+  opacity: 1 !important;
+}
+
+.hoverButton.copied span {
+  opacity: 0 !important;
+}
 #inputSection {
   background: #0d1117;
   
