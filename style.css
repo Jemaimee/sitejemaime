@@ -33,7 +33,7 @@ body {
   text-align: center;
   text-decoration: none;
   width: auto;
-  color: black;
+  color: white;
 }
 
 
@@ -49,7 +49,7 @@ body {
 }
 .linkContainer a[href*="steamcommunity"] {
   background: linear-gradient(135deg, #1b2736 0%, #243357 50%, #193472 100%);
-  color: white;
+  
 }
 .linkContainer a[href*="steamcommunity"]:hover {
   opacity: 0.85;
