@@ -30,10 +30,27 @@ body {
 
 #inputSection {
   background: #0d1117;
+  
   padding: 10px 0;
   border-bottom: 1px solid #ccc;
 }
 
+#inputSection input {
+    background: #5e5e5e;
+}
+#inputSection input::placeholder {
+    color: #a0a0a0;   
+}
+#inputSection textarea {
+    background: #5e5e5e;
+}
+#inputSection textarea::placeholder {
+    color: #a0a0a0;   
+}
+#inputSection button {
+    background: #5e5e5e;
+    color: #a0a0a0;
+}
 #commentWrapper {
   max-height: 300px;
   overflow-y: auto;
