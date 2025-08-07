@@ -40,7 +40,8 @@ body {
 
 
 .linkContainer a[href*="discord"] {
-  background-color: #7289da;
+  background-color: #7289d9;
+  
 }
 .linkContainer a[href*="discord"]:hover {
   opacity: 0.85;
@@ -58,7 +59,6 @@ body {
 }
 .hoverButton {
   display: inline-block;
-  margin: 5px 0;
   padding: 10px 20px;
   background: linear-gradient(135deg, #1b2736 0%, #243357 50%, #193472 100%);
   color: white;
@@ -108,26 +108,26 @@ body {
 }
 #inputSection {
   background: #0d1117;
-  
   padding: 10px 0;
   border-bottom: 1px solid #ccc;
 }
+#inputSection input, textarea, button{
+  background-color: #1e1e1e;
+  color: #ddd;
+  border-radius: 5px;
+  transition: all 0.3s ease;
 
-#inputSection input {
-    background: #5e5e5e;
 }
-#inputSection input::placeholder {
-    color: #a0a0a0;   
-}
-#inputSection textarea {
-    background: #5e5e5e;
-}
-#inputSection textarea::placeholder {
-    color: #a0a0a0;   
+#inputSection input::placeholder, textarea::placeholder {
+    color: #ddd;   
 }
 #inputSection button {
-    background: #5e5e5e;
-    color: #a0a0a0;
+    color: white;
+}
+#inputSection button:hover {
+  background-color: #3b6fd1;
+  color: #000000;
+  transform: scale(1.10);
 }
 #commentWrapper {
   max-height: 300px;
@@ -146,7 +146,13 @@ body {
   padding: 10px 0;
   color:    white;
 }
-
+.comment:hover{
+  background-color: #252525;
+  border: 1px solid white;
+  border-radius: 5px;
+  text-align: center;
+  padding-bottom: 10px 0;
+}
 .comment .author {
   font-weight: bold;
 }
