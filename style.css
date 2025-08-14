@@ -27,15 +27,19 @@ body {
 }
 
 .linkContainer a {
-  display: inline-block;
+  display: inline-flex;
   padding: 10px 20px;
   border-radius: 5px;
   text-align: center;
   text-decoration: none;
+  align-items: center;
   width: auto;
   color: white;
 }
-
+.linkContainer a img, .hoverButton img {
+  margin-right: 5px;
+  width: 20px;
+}
 
 
 
@@ -78,7 +82,10 @@ body {
   overflow: hidden;
   transition: all 0.3s ease;
 }
-
+.hoverButton img {
+  margin-right: 5px;
+  width: 15px;
+}
 .hoverButton span {
   transition: opacity 0.3s ease;
 }
