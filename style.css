@@ -57,6 +57,9 @@ body {
   transform: scale(1.10);
   transition: all 0.3s ease;
 }
+.linkContainer a[href*="paypal"] {
+  background: linear-gradient(135deg, #002450 0%, #008bfd 100%);
+}
 .linkContainer a[href*="paypal"]:hover {
   opacity: 0.85;
   transform: scale(1.10);
