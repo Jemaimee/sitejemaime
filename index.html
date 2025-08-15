@@ -3,11 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Je m'aime - Commentaires</title>
+  <title>Je m'aime </title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+<div id="clickGate">
+  <div class="gateContent">
+    <h2>JE MAIME</h2>
+    <p>Click</p>
+  </div>
+</div>
 
+<div>
   <div id="mainTitle">
   <h1>JE M'AIME</h1>
   <div class="linkContainer">
@@ -25,108 +32,48 @@
     </button>
     <a href="https://paypal.me/Jemaimeee?country.x=BE&locale.x=fr_FR" target="_blannk">
       <img src="image/paypal_logo.png" alt="paypal_logo">
-      PAYPAL
+      PAYPAL❤
     </a>
 
   </div>
 </div>
+<div id="musicPlayer">
+  <div class="player" id="player">
+    <div class="album">
+      <img src="image/audiogif.gif" alt="Album Art" >
+    </div>
 
+    <div class="info">
+      <div class="title">BULLET MAY FLY ROUND</div>
+      <div class="progress-container">
+        <div class="time" id="current">00:00</div>
+        <div class="progress-bar" id="seekBar">
+          <div class="progress" id="progress"></div>
+          <div class="progress-dot" id="progressDot"></div>
+        </div>
+        <div class="time" id="duration">03:01</div>
+      </div>
+    </div>
 
-  <div id="inputSection">
-    <input type="text" id="username" placeholder="pseudo" required /><br /><br />
-    <textarea id="commentContent" placeholder="texte" required></textarea><br />
-    <button id="submitComment">Envoyer</button>
+    <button class="btn" id="playPauseBtn" aria-label="Play/Pause">❚❚</button>
   </div>
 
-  <div id="commentWrapper">
-    <div id="commentSection"></div>
-  </div>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-    import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
-
-    // Ta config Firebase
-    const firebaseConfig = {
-      apiKey: "AIzaSyBFrfps5xA3LscO7ltRy1Wo6KZF-egTP3E",
-      authDomain: "je-maime-46330.firebaseapp.com",
-      projectId: "je-maime-46330",
-      storageBucket: "je-maime-46330.firebasestorage.app",
-      messagingSenderId: "614930169981",
-      appId: "1:614930169981:web:0baa48a81edfc78b603114",
-      measurementId: "G-9ZDE0Z57XJ"
-    };
-
-    // Initialize Firebase & Firestore
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    const db = getFirestore(app);
-
-    const commentSection = document.getElementById('commentSection');
-    const submitBtn = document.getElementById('submitComment');
-
-    // Fonction pour afficher un commentaire
-    function renderComment(doc) {
-      const data = doc.data();
-      const div = document.createElement('div');
-      div.className = 'comment';
-      div.innerHTML = `
-        <div class="author">${escapeHTML(data.username)}</div>
-        <div class="date">${data.timestamp ? new Date(data.timestamp.seconds * 1000).toLocaleString() : ''}</div>
-        <div class="content">${escapeHTML(data.content)}</div>`;
-      commentSection.prepend(div);
-    }
-
-    // Ecoute temps réel sur la collection 'comments', triée par timestamp décroissant
-    const q = query(collection(db, "comments"), orderBy("timestamp", "desc"));
-    onSnapshot(q, (snapshot) => {
-      commentSection.innerHTML = '';
-      snapshot.forEach(doc => renderComment(doc));
-    });
-
-    // Escape HTML pour éviter les injections
-    function escapeHTML(text) {
-      const div = document.createElement('div');
-      div.textContent = text;
-      return div.innerHTML;
-    }
-
-    // Envoi du commentaire
-    submitBtn.addEventListener('click', async () => {
-      const username = document.getElementById('username').value.trim();
-      const content = document.getElementById('commentContent').value.trim();
-      if (!username || !content) return alert("Merci de remplir tous les champs.");
-
-      try {
-        await addDoc(collection(db, "comments"), {
-          username,
-          content,
-          timestamp: serverTimestamp()
-        });
-        document.getElementById('username').value = '';
-        document.getElementById('commentContent').value = '';
-      } catch (error) {
-        console.error("Erreur lors de l'envoi du commentaire :", error);
-      }
-    });
-  </script>
-  <script>
-  const button = document.querySelector('.hoverButton');
-
-  button.addEventListener('click', () => {
-    const textToCopy = "1571990998";
-    navigator.clipboard.writeText(textToCopy).then(() => {
-      button.classList.add('copied');
-      setTimeout(() => {
-        button.classList.remove('copied');
-      }, 2000); 
-    }).catch(err => {
-      console.error('Erreur lors de la copie :', err);
-    });
-  });
-</script>
+  <audio id="audioPlayer" preload="metadata" src="audio/song.mp3" loop></audio>
+</div>
 
 
+<div id="inputSection">
+  <input type="text" id="username" placeholder="pseudo" required /><br /><br />
+  <textarea id="commentContent" placeholder="texte" required></textarea><br />
+  <button class="submitComment" id="submitComment">Envoyer</button>
+</div>
+
+<div id="commentWrapper">
+  <div id="commentSection"></div>
+</div>
+
+
+<script type="module" src="script.js"></script>
 </body>
 </html>
