@@ -6,9 +6,26 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase
 // Wrap everything that needs the DOM
 document.addEventListener('DOMContentLoaded', () => {
 
+
+
     const player = document.getElementById('audioPlayer');
     const gate = document.getElementById('clickGate');
+    const musicfiles =[
+        "audio/fightclub.mp3",
+        "audio/song.mp3"
+    ];
+    const randomindex = Math.floor(Math.random()* musicfiles.length);
+    player.src = musicfiles[randomindex];
 
+    const songtitle = document.getElementById('songtitle')
+    const songimage = document.getElementById('songimage')
+    if (randomindex == 0) {
+        songtitle.textContent = "WHERE IS MY MIND"
+        songimage.src = "image/fightclubalbum.gif"
+    } else {
+        songtitle.textContent = "BULLET MAY FLY ROUND"
+        songimage.src = "image/audiogif.gif"
+    }
 
     if (gate && player) {
         gate.addEventListener('click', () => {

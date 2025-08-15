@@ -1,11 +1,14 @@
 body {
   font-family: Arial, sans-serif;
-  max-width: 600px;
   margin: auto;
   display: flex;
   flex-direction: column;
   background-color: #0d1117;
   min-height: 100vh;
+  background-image: url(image/background.jpg);
+  background-position: center;
+  background-size: cover;
+  backdrop-filter: blur(20px);
 }
 
 #clickGate {
@@ -20,7 +23,10 @@ body {
   font-family: sans-serif;
   z-index: 9999;
   cursor: pointer;
-  transition: opacity 0.5s ease;
+  transition: opacity 1s ease;
+  background-image: url(image/background.jpg);
+  background-position: center;
+  background-size: cover;
   backdrop-filter: blur(10px);
 }
 .gateContent h2 {
@@ -28,6 +34,7 @@ body {
   margin-bottom: 10px;
   text-shadow: 0 0 10px #61a3ee, 0 0 20px #0077ff, 0 0 30px #003cff;
   animation: glow 1.5s ease-in-out infinite alternate;
+  font-style: italic;
 }
 
 .gateContent p {
@@ -61,13 +68,14 @@ body {
 #mainTitle h1 {
   font-size: 3em;
   margin-bottom: 20px;
+  font-style: italic;
 }
 
 .linkContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px; 
+  gap: 20px; 
 }
 
 .linkContainer a {
@@ -79,40 +87,40 @@ body {
   align-items: center;
   width: auto;
   color: white;
+  height: 20px;
 }
 .linkContainer a img, .hoverButton img {
   margin-right: 5px;
   
 }
 
-
+.linkContainer a:hover {
+  opacity: 0.85;
+  transform: scale(1.10);
+  transition: all 0.3s ease;
+}
 
 .linkContainer a[href*="discord"] {
   background-color: #7289d9;
   
 }
-.linkContainer a[href*="discord"]:hover {
-  opacity: 0.85;
-  transform: scale(1.10);
-  transition: all 0.3s ease;
+
+.linkContainer a[href*="github"]{
+  background-color: #141414d0;
 }
+.linkContainer .githublogo {
+  width: 20px;
+}
+
 .linkContainer a[href*="steamcommunity"] {
   background: linear-gradient(135deg, #1b2736 0%, #243357 50%, #193472 100%);
   
 }
-.linkContainer a[href*="steamcommunity"]:hover {
-  opacity: 0.85;
-  transform: scale(1.10);
-  transition: all 0.3s ease;
-}
+
 .linkContainer a[href*="paypal"] {
   background: linear-gradient(135deg, #002450 0%, #008bfd 100%);
 }
-.linkContainer a[href*="paypal"]:hover {
-  opacity: 0.85;
-  transform: scale(1.10);
-  transition: all 0.3s ease;
-}
+
 .hoverButton {
   display: inline-flex;
   padding: 10px 20px;
@@ -163,7 +171,7 @@ body {
   opacity: 0 !important;
 
 }
-#musicPlayer { display:flex; justify-content:center; margin-top:20px; }
+#musicPlayer { max-width: 600px;display:flex; justify-content:center;margin: auto; margin-top:20px; }
 
 .player {
   display:flex; align-items:center;
@@ -194,7 +202,7 @@ body {
 }
 
 .btn {
-  width:40px; height:40px; background:rgba(20,20,20,.4); border-radius:50%;
+  width:40px; height:40px; background:transparent; border-radius:50%;
   margin-left:15px; display:flex; justify-content:center; align-items:center;
   cursor:pointer; border:none; color:#00ff66; font-weight:700;
 }
