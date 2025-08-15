@@ -81,7 +81,7 @@ body {
 .linkContainer a {
   display: inline-flex;
   padding: 10px 20px;
-  border-radius: 10px;
+  border-radius: 10gipx;
   text-align: center;
   text-decoration: none;
   align-items: center;
@@ -175,7 +175,7 @@ body {
 
 .player {
   display:flex; align-items:center;
-  background:rgba(20,20,20,.4); backdrop-filter:blur(10px);
+  background:rgba(22, 22, 22, 0.514); backdrop-filter:blur(10px);
   border-radius:40px; padding:10px 20px; width:650px; color:#fff;
   font-family:Arial, sans-serif;
 }
