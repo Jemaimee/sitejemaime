@@ -81,7 +81,7 @@ body {
 .linkContainer a {
   display: inline-flex;
   padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: 10px;
   text-align: center;
   text-decoration: none;
   align-items: center;
@@ -127,7 +127,7 @@ body {
   background: linear-gradient(135deg, #1b2736 0%, #243357 50%, #193472 100%);
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   font-size: 16px;
   cursor: pointer;
   position: relative;
