@@ -70,69 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    // Firebase config
-    const firebaseConfig = {
-        apiKey: "AIzaSyBFrfps5xA3LscO7ltRy1Wo6KZF-egTP3E",
-        authDomain: "je-maime-46330.firebaseapp.com",
-        projectId: "je-maime-46330",
-        storageBucket: "je-maime-46330.firebasestorage.app",
-        messagingSenderId: "614930169981",
-        appId: "1:614930169981:web:0baa48a81edfc78b603114",
-        measurementId: "G-9ZDE0Z57XJ"
-    };
-
-    // Initialize Firebase & Firestore
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    const db = getFirestore(app);
-
-    const commentSection = document.getElementById('commentSection');
-    const submitBtn = document.getElementById('submitComment');
-
-    // Fonction pour afficher un commentaire
-    function renderComment(doc) {
-        const data = doc.data();
-        const div = document.createElement('div');
-        div.className = 'comment';
-        div.innerHTML = `
-            <div class="author">${escapeHTML(data.username)}</div>
-            <div class="date">${data.timestamp ? new Date(data.timestamp.seconds * 1000).toLocaleString() : ''}</div>
-            <div class="content">${escapeHTML(data.content)}</div>`;
-        commentSection.prepend(div);
-    }
-
-    // Ecoute temps réel sur la collection 'comments', triée par timestamp décroissant
-    const q = query(collection(db, "comments"), orderBy("timestamp", "desc"));
-    onSnapshot(q, (snapshot) => {
-        commentSection.innerHTML = '';
-        snapshot.forEach(doc => renderComment(doc));
-    });
-
-    // Escape HTML pour éviter les injections
-    function escapeHTML(text) {
-        const div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
-    }
-
-    // Envoi du commentaire
-    submitBtn.addEventListener('click', async () => {
-        const username = document.getElementById('username').value.trim();
-        const content = document.getElementById('commentContent').value.trim();
-        if (!username || !content) return alert("Merci de remplir tous les champs.");
-
-        try {
-            await addDoc(collection(db, "comments"), {
-                username,
-                content,
-                timestamp: serverTimestamp()
-            });
-            document.getElementById('username').value = '';
-            document.getElementById('commentContent').value = '';
-        } catch (error) {
-            console.error("Erreur lors de l'envoi du commentaire :", error);
-        }
-    });
+    
 
     // Copie du texte au clic
     const button = document.querySelector('.hoverButton');
